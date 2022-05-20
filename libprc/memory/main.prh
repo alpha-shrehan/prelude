@@ -5,9 +5,9 @@ pragma once
  * @param size Size of allocation
  * @returns int pointer. Requires to be cast
  */
-_malloc(:int) -> int[] {...}
-_calloc(:int, :int) -> int[] {...}
-_realloc(:int[], :int) -> int[] {...}
+decl _malloc(:int) -> int[] {...}
+decl _calloc(:int, :int) -> int[] {...}
+decl _realloc(:int[], :int) -> int[] {...}
 
 define malloc: (X) -> _malloc($X)
 define calloc: (X, Y) -> _calloc($X, $Y)

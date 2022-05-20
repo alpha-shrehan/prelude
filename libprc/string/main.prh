@@ -1,3 +1,3 @@
 pragma once
 
-strlen(:char[]) -> int {...}
+decl strlen(:char[]) -> int {...}

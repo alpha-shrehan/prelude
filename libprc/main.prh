@@ -6,14 +6,14 @@ define int32 i32
 define int16 i16
 define int8 i8
 
-ifdef platform_arch == 0x64
+$ifdef platform_arch == 0x64
     define int int64
-elif platform_arch == 0x32 || platform_arch == 0x86
+$elif platform_arch == 0x32 || platform_arch == 0x86
     define int int32
-else
+$else
     warn "Unknown platform"
     define int int8
-endif
+$endif
 
 include "memory"
 include "string"
@@ -24,4 +24,4 @@ include "sys"
  * @param _Code exit code
  * @returns int For expressional usage
  */
-exit(:int) -> int {...}
+decl exit(:int) -> int {...}

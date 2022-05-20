@@ -1,6 +1,6 @@
 include "main.prh"
 
-_malloc(size: int) -> int[] {
+decl _malloc(size: int) -> int[] {
     if (size > 0)
         return (int[]) __sys_alloc_stack(size);
     else
@@ -10,7 +10,7 @@ _malloc(size: int) -> int[] {
             return null;
 }
 
-_calloc(items: int, size: int) -> int[] {
+decl _calloc(items: int, size: int) -> int[] {
     if (size > 0) {
         res: int[] = __sys_alloc_stack(size * items);
         r: int = 0;
@@ -34,7 +34,7 @@ _calloc(items: int, size: int) -> int[] {
  * 8 byte value, 4 byte, 4 byte, 4 byte
  * Since a variable reference is not present, one can manually jump from memory.
  */
-_realloc(arr: int[], new_sz: int) -> int[] {
+decl _realloc(arr: int[], new_sz: int) -> int[] {
     a: any = __get_memory_linked_list_node_back(&arr);
     b: int[] = _malloc(new_sz);
 
