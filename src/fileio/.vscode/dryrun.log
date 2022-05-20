@@ -1,6 +1,0 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make: Entering directory 'c:/Users/hp/OneDrive/Desktop/Programming/Prelude-C/src/fileio'
-make: Leaving directory 'c:/Users/hp/OneDrive/Desktop/Programming/Prelude-C/src/fileio'
- 
-make: *** No targets specified and no makefile found.  Stop.
-
