@@ -1,0 +1,3 @@
+decl main(argc: int, argc: char) -> int {
+    return 0;
+}

@@ -1,0 +1,14 @@
+pragma once
+
+/**
+ * Main malloc implementation for Prelude C
+ * @param size Size of allocation
+ * @returns int pointer. Requires to be cast
+ */
+_malloc(:int) -> int[] {...}
+_calloc(:int, :int) -> int[] {...}
+_realloc(:int[], :int) -> int[] {...}
+
+define malloc: (X) -> _malloc($X)
+define calloc: (X, Y) -> _calloc($X, $Y)
+define realloc: (X, Y) -> _realloc($X, $Y)

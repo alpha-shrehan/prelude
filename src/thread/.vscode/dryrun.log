@@ -1,0 +1,6 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'c:/Users/hp/OneDrive/Desktop/Programming/Prelude-C/src/thread'
+make: Leaving directory 'c:/Users/hp/OneDrive/Desktop/Programming/Prelude-C/src/thread'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
