@@ -25,7 +25,7 @@ extern "C"
     /**
      * @brief Print a JIT Token
      * @param stream Stream to print to
-     * @param t Passed as void *
+     * @param t Passed as void *, is a struct _jit_token_str *
      * @return JIT_API 
      */
     JIT_API void Debug_PrintJITToken(FILE *, void *);

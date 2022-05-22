@@ -3,6 +3,8 @@
 #include "Header.h"
 #include "structs.h"
 
+#define DEFAULT_TYPE_SIZE 8
+
 enum _jit_expr_const_type
 {
     JIT_EXPR_CONSTANT_INT,
@@ -50,6 +52,7 @@ enum _jit_expr_type
 struct _jit_expr_str
 {
     int type;
+    int size;
 
     union
     {
@@ -85,7 +88,7 @@ struct _jit_stmt_str
         {
             char *name;
             struct _jit_expr_str *args,
-                ret_type;
+                *ret_type;
             struct _jit_stmt_str *body;
 
             int arg_count;
@@ -193,6 +196,14 @@ extern "C"
      * @return jit_module_t* 
      */
     JIT_API jit_module_t *Jit_Parser_Module_New(char *, jit_stmt_t *, int);
+
+    /**
+     * @brief Parse tokens to form AST
+     * @param mod Module
+     * @param toks Tokens
+     * @return int
+     */
+    JIT_API int Jit_Parser_Make_AST(jit_module_t *, struct _jit_lexer_ctx_str *);
 
 #if defined(__cplusplus)
 }

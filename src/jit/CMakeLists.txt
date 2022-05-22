@@ -13,7 +13,8 @@ add_subdirectory(tests)
 add_library(pcjit SHARED
     Header.h jit.h
     structs.c structs.h
-    debug.c debug.h)
+    debug.c debug.h
+    parser.c parser.h)
 
 target_link_libraries(pcjit
     -L${CMAKE_SOURCE_DIR}/../memory/build -lpcmemory

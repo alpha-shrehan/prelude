@@ -7,10 +7,9 @@ int main(int argc, char const *argv[])
 
     Jit_Lexer_Initialize(ctx);
 
-    for (size_t i = 0; i < ctx->tok_count; i++)
-    {
-        Debug_PrintJITToken(stdout, (void *)&ctx->toks[i]);
-    }
+    jit_module_t *mod = Jit_Parser_Module_New("test.pc", NULL, 0);
+
+    Jit_Parser_Make_AST(mod, ctx);
 
     FileIO_Close(fp);
     return printf("Program Ended.") && 0;
