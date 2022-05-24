@@ -2,137 +2,7 @@
 
 #include "Header.h"
 #include "structs.h"
-
-#define DEFAULT_TYPE_SIZE 8
-
-enum _jit_expr_const_type
-{
-    JIT_EXPR_CONSTANT_INT,
-    JIT_EXPR_CONSTANT_FLOAT,
-    JIT_EXPR_CONSTANT_STRING,
-    JIT_EXPR_CONSTANT_VARIABLE
-};
-
-struct _jit_expr_constant_str
-{
-    int type;
-
-    union
-    {
-        struct
-        {
-            long long val;
-        } Integer;
-
-        struct
-        {
-            float val;
-        } Float;
-
-        struct
-        {
-            char *val;
-        } String;
-
-        struct
-        {
-            bool isdtype;
-            char *val;
-        } Variable;
-
-    } v;
-};
-
-enum _jit_expr_type
-{
-    JIT_EXPR_CONSTANT,
-    JIT_EXPR_FUNC_CALL
-};
-
-struct _jit_expr_str
-{
-    int type;
-    int size;
-
-    union
-    {
-        struct
-        {
-            struct _jit_expr_constant_str *val;
-        } constant;
-
-        struct
-        {
-            struct _jit_expr_constant_str *name,
-                *args;
-
-            int arg_count;
-        } func_call;
-
-    } v;
-};
-
-enum _jit_stmt_type
-{
-    JIT_STMT_FUN_DECL,
-    JIT_STMT_RETURN
-};
-
-struct _jit_stmt_str
-{
-    int type;
-
-    union
-    {
-        struct
-        {
-            char *name;
-            struct _jit_expr_str *args,
-                *ret_type;
-            struct _jit_stmt_str *body;
-
-            int arg_count;
-            int body_count;
-
-        } func_decl;
-
-        struct
-        {
-            struct _jit_expr_str *expr;
-        } ret_stmt;
-
-    } v;
-};
-
-struct _jit_module_str
-{
-    char *name;
-    struct _jit_stmt_str *body;
-    int body_count;
-
-    struct
-    {
-        struct
-        {
-            bool _once;
-        } _pragma;
-
-        struct
-        {
-            char *name;
-            char **args;
-            char *body;
-        } *_macros, _st_sz1;
-
-        int macro_count;
-        
-    } meta;
-};
-
-typedef struct _jit_expr_constant_str jit_const_t;
-typedef struct _jit_expr_str jit_expr_t;
-typedef struct _jit_stmt_str jit_stmt_t;
-typedef struct _jit_module_str jit_module_t;
+#include "ast.h"
 
 #if defined(__cplusplus)
 extern "C"
@@ -198,12 +68,11 @@ extern "C"
     JIT_API jit_module_t *Jit_Parser_Module_New(char *, jit_stmt_t *, int);
 
     /**
-     * @brief Parse tokens to form AST
+     * @brief Parse JIT and write object code/asm to file
      * @param mod Module
-     * @param toks Tokens
-     * @return int
+     * @return JIT_API 
      */
-    JIT_API int Jit_Parser_Make_AST(jit_module_t *, struct _jit_lexer_ctx_str *);
+    JIT_API int Jit_Parser_ParseAST(jit_module_t *);
 
 #if defined(__cplusplus)
 }

@@ -16,6 +16,7 @@
 #include "../fileio/file.h"
 #include "../thread/prthread.h"
 #include "../utils/utils.h"
+#include "../emitter/emit.h"
 
 #if defined(SHARED_BUILD)
 #   if defined(_WIN32)
